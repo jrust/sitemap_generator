@@ -110,9 +110,10 @@ Example 'config/sitemap.rb'
       # add merchant path
       sitemap.add '/purchase', :priority => 0.7, :host => "https://www.example.com"
 
-      # add all individual news with images
+      # add all individual news with images and the additional Google News parameters
       News.all.each do |n|
-        sitemap.add news_path(n), :lastmod => n.updated_at, :images=>n.images.collect{ |r| :loc=>r.image.url, :title=>r.image.name }
+        sitemap.add news_path(n), :lastmod => n.updated_at, :images=>n.images.collect{ |r| :loc=>r.image.url, :title=>r.image.name },
+                    :news => { :publication_name => "News Daily", :publication_date => n.created_at, :title => n.title, :genres => "Blog,Finance" }
       end
 
     end
