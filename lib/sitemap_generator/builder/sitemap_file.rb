@@ -29,6 +29,7 @@ module SitemapGenerator
             <urlset
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+              xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
               xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
               xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -96,6 +97,22 @@ module SitemapGenerator
                 builder.image :title, image[:title]                 if image[:title]
                 builder.image :license, image[:license]             if image[:license]
               end
+            end
+          end
+
+          unless link[:news].blank?
+            news = link[:news]
+            builder.news:news do
+              builder.news:publication do
+                builder.news :name, news[:publication_name]
+                builder.news :language, news[:publication_language]
+              end
+              builder.news :publication_date, w3c_date(news[:publication_date])
+              builder.news :title, news[:title]
+              builder.news :access, news[:access]               if news[:access]
+              builder.news :genres, news[:genres]               if news[:genres]
+              builder.news :keywords, news[:keywords]           if news[:keywords]
+              builder.news :stock_tickers, news[:stock_tickers] if news[:stock_tickers]
             end
           end
         end
