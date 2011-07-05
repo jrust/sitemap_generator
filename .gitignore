@@ -1,6 +1,10 @@
+.DS_Store
 *.swp
 pkg
 spec/mock_app_gem/vendor/**/*
 spec/mock_app_plugin/vendor/**/*
 spec/mock_rails3_gem/vendor/**/*
+spec/**/Gemfile.lock
 tmp/**/*
+*.bundle
+*.orig

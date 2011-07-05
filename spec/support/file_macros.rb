@@ -10,11 +10,20 @@ module FileMacros
     end
 
     def file_should_exist(file)
-      File.exists?(file).should be(true)
+      File.exists?(file).should be(true), "File #{file} should exist"
+    end
+
+    def directory_should_exist(dir)
+      File.exists?(dir).should be(true), "Directory #{dir} should exist"
+      File.directory?(dir).should be(true), "#{dir} should be a directory"
+    end
+
+    def directory_should_not_exist(dir)
+      File.exists?(dir).should be(false), "Directory #{dir} should not exist"
     end
 
     def file_should_not_exist(file)
-      File.exists?(file).should be(false)
+      File.exists?(file).should be(false), "File #{file} should not exist"
     end
 
     def identical_files?(first, second)
